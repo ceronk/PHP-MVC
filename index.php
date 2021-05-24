@@ -5,10 +5,13 @@
 //YA QUE ES EL ENCARGADO DE LLAMAR TODO
 
 
+//se le concatena el "controller" para acortar la url
+// ya que se utiliza en todas las llamadas de controladores
+$nombreControlador = $_GET['controller'] . 'controller';
+
 //Comprobando que exista el controlador
-if (isset($_GET['controller']) && class_exists($_GET['controller'])) {
-    //$controlador = new nombreControlador();
-    $nombreControlador = $_GET['controller'].'controller';
+if (isset($nombreControlador) && class_exists($nombreControlador)) {
+
     $controlador = new $nombreControlador();
 
 
