@@ -59,12 +59,8 @@ class Usuario{
     }
 
 
-    public function conseguirTodos(){
-        
+    public function mostrarTodos(){
+        return "Sacando todos los usuarios";
     }
-
-
-
-
 
 }
