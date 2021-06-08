@@ -1,9 +1,22 @@
 <?php
 
+require_once 'CONFIG/database.php';
+
 class ModeloBase
 {
-    public function mostrarTodos()
+
+    public $db;
+
+    public function __construct()
     {
-        return "Sacando todos los usuarios";
+        $this->db = database::conectar();
+    }
+
+
+    public function mostrarTodos($tabla)
+    {
+        $query = $this->db->query(" SELECT * FROM $tabla ");
+
+        return $query;
     }
 }

@@ -1,4 +1,13 @@
-<?php require_once 'CONTROLLERS/usuario.php';
+<h1>Web con MVC</h1>
+
+<?php
+
+// require_once 'CONTROLLERS/usuario.php';  //En vez de esto se usa autoload una vez
+// require_once 'CONTROLLERS/nota.php';
+
+ require_once 'autoload.php'; //se incluyen automaticamente los 
+ //controladores
+
 
 
 //CONOCIDO NORMALMENTE COMO "CONTROLADOR FRONTAL"
@@ -7,16 +16,17 @@
 
 //se le concatena el "controller" para acortar la url
 // ya que se utiliza en todas las llamadas de controladores
-$nombreControlador = $_GET['controller'] . 'controller';
+if (isset($_GET['controller'])) {
+    $nombreControlador = $_GET['controller'] . 'Controller';
+} else {
+    echo "La pagina que buscas no existe";
+    exit();
+}
 
 //Comprobando que exista el controlador
 if (isset($nombreControlador) && class_exists($nombreControlador)) {
 
     $controlador = new $nombreControlador();
-
-
-    //$controlador->mostrarTodos();  //llamada manual de vistas
-    //$controlador->crearUsuario();
 
     //para llamar vistas de forma dinamica
     // (recoger variables por get)
@@ -25,30 +35,15 @@ if (isset($nombreControlador) && class_exists($nombreControlador)) {
         $action = $_GET['action'];
         $controlador->$action(); //de esta forma llama al metodo que tenemos
         //en esa clase
-    } else {
+    } 
+    else {
         echo "La vista que buscas no existe";
     }
-} else {
+
+
+}  
+else {
     echo "El controlador que buscas no existe";
 }
 
 ?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
-    <h1>Hola mundo | MVC</h1>
-
-</body>
-
-</html>

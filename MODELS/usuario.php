@@ -1,8 +1,16 @@
 <?php
+require_once 'ModeloBase.php';
 
-
-class Usuario extends ModeloBase{
+class Usuario extends ModeloBase
+{
     public $nombre, $apellidos, $email, $pass;
+
+
+    public function __construct()
+    {
+        parent::__construct(); //Se hereda el constructor padre
+        //(conexion a la BDD)
+    }
 
 
     public function getNombre()
@@ -10,7 +18,7 @@ class Usuario extends ModeloBase{
         return $this->nombre;
     }
 
-  
+
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
@@ -18,7 +26,7 @@ class Usuario extends ModeloBase{
         return $this;
     }
 
-  
+
     public function getApellidos()
     {
         return $this->apellidos;
@@ -32,13 +40,13 @@ class Usuario extends ModeloBase{
         return $this;
     }
 
-  
+
     public function getEmail()
     {
         return $this->email;
     }
 
-  
+
     public function setEmail($email)
     {
         $this->email = $email;
@@ -57,5 +65,4 @@ class Usuario extends ModeloBase{
 
         return $this;
     }
-
 }
